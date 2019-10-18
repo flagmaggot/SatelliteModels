@@ -1,0 +1,49 @@
+import bpy
+import math
+
+selection_names = bpy.context.selected_objects
+
+obj = bpy.context.object
+obj_fcurves = obj.animation_data.action.fcurves
+
+if obj.rotation_mode == 'QUATERNION':
+    w_fcurve = obj_fcurves.find('rotation_quaternion', index=0)
+    x_fcurve = obj_fcurves.find('rotation_quaternion', index=1)
+    y_fcurve = obj_fcurves.find('rotation_quaternion', index=2)
+    z_fcurve = obj_fcurves.find('rotation_quaternion', index=3)
+elif obj.rotation_mode == 'AXIS_ANGLE':
+    w_fcurve = obj_fcurves.find('rotation_axis_angle', index=0)
+    x_fcurve = obj_fcurves.find('rotation_axis_angle', index=1)
+    y_fcurve = obj_fcurves.find('rotation_axis_angle', index=2)
+    z_fcurve = obj_fcurves.find('rotation_axis_angle', index=3)
+else:
+    x_fcurve = obj_fcurves.find('rotation_euler', index=0)
+    y_fcurve = obj_fcurves.find('rotation_euler', index=1)
+    z_fcurve = obj_fcurves.find('rotation_euler', index=2)
+    
+x = ""
+y = ""
+z = ""
+
+for keyframeX in x_fcurve.keyframe_points:
+    x= str(x) + " " +  str(round(math.degrees(keyframeX.co[1])))
+    
+    
+for keyframeY in y_fcurve.keyframe_points:
+    y= str(y) + " " +  str(round(math.degrees(keyframeY.co[1])))
+
+for keyframeZ in z_fcurve.keyframe_points:
+    z= str(z) + " " +  str(round(math.degrees(keyframeZ.co[1])))
+    
+print("x: " + x)
+print("y: " + y)
+print("z: " + z)
+
+
+for i in bpy.data.actions:
+    print (i.name)
+    for fcu in i.fcurves:
+        print (fcu)
+        for keyframe in fcu.keyframe_points:
+            x, y = keyframe.co
+            print (x,y)
