@@ -25,7 +25,9 @@ PART {
     explosionPotential = 0
     vesselType = Probe
     bulkheadProfiles = size0
-    MODULE {
+    
+	
+	MODULE {
         name = ModuleCommand
         minimumCrew = 0
         hasHibernation = True
