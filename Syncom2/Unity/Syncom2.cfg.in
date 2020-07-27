@@ -1,53 +1,29 @@
 PART {
     name = Syncom2
-
     module = Part
-
     author = sirkut
-
     mesh = Syncom2.mu
-
     rescaleFactor = 1.0
-
     scale = 1.0
-
     CrewCapacity = 0
-
     TechRequired = unmannedTech
-
     entryCost = 3800
-
     cost = 360
-
     category = Pods
-
     subcategory = 0
-
     title = Early Bird
-
     manufacturer = Hughes Aerospace
-
     description = Syncom 2
-
     attachRules = 1,0,1,1,0
-
     mass = 0.07
-
     dragModelType = default
-
     maximum_drag = 0.2
-
     minimum_drag = 0.15
-
     angularDrag = 1.5
-
     crashTolerance = 15
-
     maxTemp = 1200 
     explosionPotential = 0
-
     vesselType = Probe
-
     bulkheadProfiles = size0
 	
 	MODULE
@@ -86,8 +62,26 @@ PART {
 		allowAnimationWhileShielded = False
 		restrictedNode = top
 		disableAfterPlaying = true
-		
 	}
+	
+	MODULE
+	{
+	name = ModuleDeployableSolarPanel
+	sunTracking = false
+	raycastTransformName = suncatcher
+	pivotName = suncatcher
+	isBreakable = false
+	resourceName = ElectricCharge
+	chargeRate = 8
+	panelType = CYLINDRICAL
+	powerCurve
+	{
+		key = 206000000000 0 0 0
+		key = 13599840256 1 0 0
+		key = 68773560320 0.5 0 0
+		key = 0 10 0 0
+	}
+}
 
 
 
