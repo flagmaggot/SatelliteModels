@@ -21,68 +21,106 @@ PART {
     minimum_drag = 0.15
     angularDrag = 1.5
     crashTolerance = 15
-    maxTemp = 1200 
+    maxTemp = 1200
     explosionPotential = 0
     vesselType = Probe
     bulkheadProfiles = size0
+    MODULE {
+        name = ModuleCommand
+        minimumCrew = 0
+        hasHibernation = True
+        RESOURCE {
+            name = ElectricCharge
+            rate = 0.006
+        }
+    }
 	
 	MODULE
 	{
-		name = ModuleCommand
-		minimumCrew = 0
+		name = ModuleReactionWheel
+		
+		PitchTorque = 0.3
+		YawTorque = 0.3
+		RollTorque = 0.15
+		
 		RESOURCE
 		{
 			name = ElectricCharge
-			rate = 0.025
+			rate = 0.3
 		}
-		hasHibernation = True
-		defaultControlPointDisplayName = #autoLOC_6011003 //#autoLOC_6011003 = Default
-		CONTROLPOINT
+	}
+
+    MODULE {
+        name = ModuleAnimateGeneric
+        animationName = Scene
+        isOneShot = false
+        startEventGUIName = Extend Antennas
+        endEventGUIName = Close Antennas
+        actionGUIName = Extend Antennas
+        allowAnimationWhileShielded = False
+        restrictedNode = top
+        disableAfterPlaying = true
+    }
+
+    MODULE {
+        name = ModuleDeployableSolarPanel
+        sunTracking = false
+        raycastTransformName = suncatcher
+        pivotName = suncatcher
+        isBreakable = false
+        resourceName = ElectricCharge
+        chargeRate = 8
+        panelType = CYLINDRICAL
+        powerCurve {
+            key = 206000000000 0 0 0
+            key = 13599840256 1 0 0
+            key = 68773560320 0.5 0 0
+            key = 0 10 0 0
+        }
+    }
+	
+	MODULE 
+	{
+		name = ModuleEngines
+		thrustVectorTransformName = thrustTransform
+		exhaustDamage = True
+		ignitionThreshold = 0.1
+		minThrust = 0
+		maxThrust = 2.5
+		heatProduction = 40
+		fxOffset = 0, 0, 0
+		EngineType = MonoProp
+		PROPELLANT
 		{
-			name = forward
-			displayName = #autoLOC_6011001 //#autoLOC_6011001 = Forward
-			orientation = 90,0,0
+			name = MonoPropellant
+					ratio = 1
+			DrawGauge = True
 		}
-		CONTROLPOINT
+		
+		atmosphereCurve
 		{
-			name = reverse
-			displayName = #autoLOC_6011004 //#autoLOC_6011004 = Reversed
-			orientation = 0,0,180
+		 key = 0 340
+		 key = 1 290
 		}
 	}
 	
 	MODULE
 	{
-		name = ModuleAnimateGeneric
-		animationName = Scene
-		isOneShot = false
-		startEventGUIName = Extend Antennas
-		endEventGUIName = Close Antennas
-		actionGUIName = Extend Antennas
-		allowAnimationWhileShielded = False
-		restrictedNode = top
-		disableAfterPlaying = true
+		name = ModuleSAS
+		SASServiceLevel = 3
 	}
 	
-	MODULE
+	RESOURCE
 	{
-	name = ModuleDeployableSolarPanel
-	sunTracking = false
-	raycastTransformName = suncatcher
-	pivotName = suncatcher
-	isBreakable = false
-	resourceName = ElectricCharge
-	chargeRate = 8
-	panelType = CYLINDRICAL
-	powerCurve
-	{
-		key = 206000000000 0 0 0
-		key = 13599840256 1 0 0
-		key = 68773560320 0.5 0 0
-		key = 0 10 0 0
+		name = ElectricCharge
+		amount = 500
+		maxAmount = 500
 	}
-}
 
-
-
+	RESOURCE
+	{
+		name = MonoPropellant
+		amount = 50
+		maxAmount = 50
+	}
 }
