@@ -1,0 +1,55 @@
+PART
+{
+	name = ATS4Atenna
+	module = Part
+	author = Squad
+	mesh = ATS4Atenna.mu
+	rescaleFactor = 1.0
+	scale = 1.0
+	node_attach = 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0
+	node_stack_bottom = 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0
+	TechRequired = basicScience
+	entryCost = 1500
+	cost = 600
+	category = Communication
+	subcategory = 0
+	title = ATS-4 Antenna
+	manufacturer = Hughes Aerospace
+	description = ATS-4 Antenna
+	attachRules = 1,1,0,0,0
+	mass = 0.07
+	dragModelType = default
+	maximum_drag = 0.2
+	minimum_drag = 0.2
+	angularDrag = 1
+	crashTolerance = 8
+	maxTemp = 2000 // = 3200
+	vesselType = Relay
+	bulkheadProfiles = srf
+
+	//MODULE
+	//{
+//		name = ModuleDeployableAntenna
+		//showStatus = false
+		//isTracking = false
+		//pivotName = Rod
+		//windResistance = 1
+		//animationName = Extend
+		//extendActionName = #autoLOC_6002398 //#autoLOC_6002398 = Extend <<1>>
+		//retractActionName = #autoLOC_6002399 //#autoLOC_6002399 = Retract <<1>>
+		//extendpanelsActionName = #autoLOC_6002400 //#autoLOC_6002400 = Toggle <<1>>
+	//}
+	
+	MODULE
+	{
+		name = ModuleDataTransmitter
+		antennaType = RELAY
+		packetInterval = 0.35
+		packetSize = 2
+		packetResourceCost = 18.0
+		requiredResource = ElectricCharge
+		DeployFxModules = 0
+		antennaPower = 5000000
+		antennaCombinable = True
+	}
+}
